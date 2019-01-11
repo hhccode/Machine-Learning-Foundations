@@ -100,75 +100,44 @@ def stochastic_gradient_descent(data, learning_rate):
 if __name__ == "__main__":
     training_data = data_collect("hw3_train.dat")
     testing_data = data_collect("hw3_test.dat")
-
-    # 19 & 20: Ein
+    
     GD_wlist_19 = gradient_descent(training_data, 0.01)
-    SGD_wlist_19 = stochastic_gradient_descent(training_data, 0.01)
 
     GD_Ein_19 = []
-    SGD_Ein_19 = []
     for w in GD_wlist_19:
         GD_Ein_19.append(E_in(w, training_data))
-    for w in SGD_wlist_19:
-        SGD_Ein_19.append(E_in(w, training_data))
-        
+       
+    SGD_wlist_20 = stochastic_gradient_descent(training_data, 0.001)
+
+    SGD_Ein_20 = []
+    for w in SGD_wlist_20:
+        SGD_Ein_20.append(E_in(w, training_data))
+    
     plt.figure(1)
-    plt.title('Ein for question 19 (Learning rate = 0.01)')
+    plt.title('Ein')
     plt.xlabel('Iteration')
     plt.ylabel('Ein')
     plt.plot(range(T+1), GD_Ein_19, color='blue', label='Gradient descent')
-    plt.plot(range(T+1), SGD_Ein_19, color='red', label='SGD')
-    plt.legend(loc='upper right')
-    
-    GD_wlist_20 = gradient_descent(training_data, 0.001)
-    SGD_wlist_20 = stochastic_gradient_descent(training_data, 0.001)
-
-    GD_Ein_20 = []
-    SGD_Ein_20 = []
-    for w in GD_wlist_20:
-        GD_Ein_20.append(E_in(w, training_data))
-    for w in SGD_wlist_20:
-        SGD_Ein_20.append(E_in(w, training_data))
-
-    plt.figure(2)
-    plt.title('Ein for question 20 (Learning rate = 0.001)')
-    plt.xlabel('Iteration')
-    plt.ylabel('Ein')
-    plt.plot(range(T+1), GD_Ein_20, color='blue', label='Gradient descent')
     plt.plot(range(T+1), SGD_Ein_20, color='red', label='SGD')
     plt.legend(loc='upper right')
 
-
-    # 19 & 20: Eout
+    
     
     GD_Eout_19 = []
-    SGD_Eout_19 = []
     for w in GD_wlist_19:
         GD_Eout_19.append(E_out(w, testing_data))
-    for w in SGD_wlist_19:
-        SGD_Eout_19.append(E_out(w, testing_data))
 
-    plt.figure(3)
-    plt.title('Eout for question 19 (Learning rate = 0.01)')
+    SGD_Eout_20 = []
+    for w in SGD_wlist_20:
+        SGD_Eout_20.append(E_out(w, testing_data))
+    
+    plt.figure(2)
+    plt.title('Eout')
     plt.xlabel('Iteration')
     plt.ylabel('Eout')
     plt.plot(range(T+1), GD_Eout_19, color='blue', label='Gradient descent')
-    plt.plot(range(T+1), SGD_Eout_19, color='red', label='SGD')
-    plt.legend(loc='upper right')
-
-    GD_Eout_20 = []
-    SGD_Eout_20 = []
-    for w in GD_wlist_20:
-        GD_Eout_20.append(E_out(w, testing_data))
-    for w in SGD_wlist_20:
-        SGD_Eout_20.append(E_out(w, testing_data))
-
-    plt.figure(4)
-    plt.title('Eout for question 20 (Learning rate = 0.001)')
-    plt.xlabel('Iteration')
-    plt.ylabel('Eout')
-    plt.plot(range(T+1), GD_Eout_20, color='blue', label='Gradient descent')
     plt.plot(range(T+1), SGD_Eout_20, color='red', label='SGD')
     plt.legend(loc='upper right')
-
+    
     plt.show()
+    
