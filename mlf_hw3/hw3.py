@@ -41,7 +41,8 @@ def E_in(w, data):
 
     for n in range(N):
         y = data[n][dimension]
-        Ein += math.log(1 + math.pow(math.e, -y * dot(w, data[n][0:dimension])))
+        if y != sign(dot(w, data[n][0:dimension])):
+            Ein += 1
 
     return Ein / N
 
